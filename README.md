@@ -5,8 +5,9 @@
 <p><strong>Ready-to-use agent definitions for <a href="https://github.com/zacxyonly/SimpleContext">SimpleContext</a></strong><br/>
 Drop a YAML file → get a fully-configured AI agent. No code needed.</p>
 
-[![Agents](https://img.shields.io/badge/Agents-9%20ready-brightgreen?style=flat-square)](agents/)
-[![Compatible](https://img.shields.io/badge/SimpleContext-v4.1%2B-blueviolet?style=flat-square)](https://github.com/zacxyonly/SimpleContext)
+[![Agents](https://img.shields.io/badge/Agents-15%20ready-brightgreen?style=flat-square)](agents/)
+[![Compatible](https://img.shields.io/badge/SimpleContext-v4.3%2B-blueviolet?style=flat-square)](https://github.com/zacxyonly/SimpleContext)
+[![Bot Ready](https://img.shields.io/badge/SimpleContext--Bot-compatible-2CA5E0?style=flat-square)](https://github.com/zacxyonly/SimpleContext-Bot)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 
 </div>
@@ -15,17 +16,36 @@ Drop a YAML file → get a fully-configured AI agent. No code needed.</p>
 
 ## 📦 Available Agents
 
+### Core Agents
 | Agent | Description | Best For |
 |---|---|---|
+| 🧠 [general](agents/general.yaml) | Friendly general-purpose assistant | Everyday questions, auto-routing fallback |
 | 🖥️ [coding](agents/coding.yaml) | Expert programmer for all languages | Code, debug, review, refactor |
 | 🚀 [devops](agents/devops.yaml) | Server, deployment & infrastructure | Docker, CI/CD, Linux, cloud |
 | ✍️ [writer](agents/writer.yaml) | Professional content writer | Blog, copy, email, social media |
-| 📊 [analyst](agents/analyst.yaml) | Data & business analyst | Reports, KPIs, insights |
-| 🎧 [customer_service](agents/customer_service.yaml) | Empathetic CS representative | Support, complaints, returns |
-| 🌐 [translator](agents/translator.yaml) | Multi-language translator | Any language pair, cultural context |
-| 📚 [tutor](agents/tutor.yaml) | Patient adaptive teacher | Learning any subject |
+
+### Knowledge & Research
+| Agent | Description | Best For |
+|---|---|---|
 | 🔍 [researcher](agents/researcher.yaml) | Thorough fact-checker & researcher | Research, fact-checking, analysis |
+| 📚 [tutor](agents/tutor.yaml) | Patient adaptive teacher | Learning any subject |
 | 📝 [summarizer](agents/summarizer.yaml) | Expert content condensation | Articles, reports, meetings |
+| 🌐 [translator](agents/translator.yaml) | Multi-language translator | Any language pair, cultural context |
+
+### Business & Professional
+| Agent | Description | Best For |
+|---|---|---|
+| 📊 [analyst](agents/analyst.yaml) | Data & business analyst | Reports, KPIs, insights, forecasting |
+| 🎧 [customer_service](agents/customer_service.yaml) | Empathetic CS representative | Support, complaints, returns |
+| 💰 [finance](agents/finance.yaml) | Personal finance advisor | Budgeting, investing, financial planning |
+| ⚖️ [legal](agents/legal.yaml) | Legal information assistant | Contracts, rights, regulations |
+
+### Lifestyle & Creativity
+| Agent | Description | Best For |
+|---|---|---|
+| 🎨 [creative](agents/creative.yaml) | Brainstorming & creative partner | Ideation, storytelling, naming, worldbuilding |
+| ⚡ [productivity](agents/productivity.yaml) | Personal productivity coach | Time management, habits, focus, goal-setting |
+| 💪 [health](agents/health.yaml) | Wellness guide | Fitness, nutrition, sleep, mental health |
 
 ---
 
@@ -40,6 +60,21 @@ cp SimpleContext-Agents/agents/*.yaml your-project/agents/
 ```
 
 That's it. SimpleContext hot-reloads agents — **no restart needed**.
+
+### With SimpleContext-Bot
+
+Agents are auto-downloaded during setup:
+
+```bash
+simplecontext-bot setup
+# Step 2/6: Downloads all agents automatically
+```
+
+Or update anytime:
+
+```bash
+simplecontext-bot update --agents-only
+```
 
 ---
 
@@ -57,7 +92,8 @@ agent.yaml
 ├── personality   → system prompts per user level
 │   ├── default   → for all users
 │   ├── beginner  → for profile.level = "beginner"
-│   └── expert    → for profile.level = "expert"
+│   ├── expert    → for profile.level = "expert"
+│   └── indonesian→ for Indonesian-language responses
 ├── skills        → injected into system prompt
 │   ├── name      → skill identifier
 │   ├── content   → instructions for this skill
@@ -251,15 +287,21 @@ chain:
 ```
 SimpleContext-Agents/
 ├── agents/
-│   ├── coding.yaml          ← programmer expert
-│   ├── devops.yaml          ← server & infrastructure
-│   ├── writer.yaml          ← content & copywriting
-│   ├── analyst.yaml         ← data & business
-│   ├── customer_service.yaml← CS & support
-│   ├── translator.yaml      ← multi-language
-│   ├── tutor.yaml           ← teacher & mentor
-│   ├── researcher.yaml      ← research & fact-checking
-│   └── summarizer.yaml      ← content condensation
+│   ├── general.yaml          ← default fallback agent
+│   ├── coding.yaml           ← programmer expert
+│   ├── devops.yaml           ← server & infrastructure
+│   ├── writer.yaml           ← content & copywriting
+│   ├── analyst.yaml          ← data & business
+│   ├── customer_service.yaml ← CS & support
+│   ├── translator.yaml       ← multi-language
+│   ├── tutor.yaml            ← teacher & mentor
+│   ├── researcher.yaml       ← research & fact-checking
+│   ├── summarizer.yaml       ← content condensation
+│   ├── finance.yaml          ← personal finance & investing
+│   ├── legal.yaml            ← legal information
+│   ├── creative.yaml         ← brainstorming & creativity
+│   ├── productivity.yaml     ← time management & habits
+│   └── health.yaml           ← fitness, nutrition, wellness
 ├── CONTRIBUTING.md
 └── README.md
 ```
@@ -283,10 +325,14 @@ Please include in your PR:
 
 ---
 
-## 🔗 Related
+## 🔗 Ecosystem
 
-- **[SimpleContext](https://github.com/zacxyonly/SimpleContext)** — The AI brain this runs on
-- **SimpleContext-Plugins** *(coming soon)* — Ready-to-use plugins
+| Repo | Description |
+|------|-------------|
+| [SimpleContext](https://github.com/zacxyonly/SimpleContext) | Core engine — Universal AI Brain |
+| [SimpleContext-Plugin](https://github.com/zacxyonly/SimpleContext-Plugin) | Plugin registry — extend with vector search and more |
+| [SimpleContext-Bot](https://github.com/zacxyonly/SimpleContext-Bot) | Telegram Bot — auto-downloads these agents |
+| [SimpleContext-Agents](https://github.com/zacxyonly/SimpleContext-Agents) | This repo |
 
 ---
 
