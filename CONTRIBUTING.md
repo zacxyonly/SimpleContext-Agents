@@ -9,6 +9,13 @@ Every agent YAML must have:
 - `description` — one clear sentence
 - `triggers.keywords` — at least 5 specific keywords
 - `personality.default` — clear, focused system prompt
+- `personality.indonesian` — recommended for bilingual support
+
+## General Agent Note
+
+The `general` agent is the default fallback when no other agent matches.
+When creating a new agent, make sure your trigger keywords are specific
+enough that they don't accidentally override `general` for unrelated queries.
 
 ## Submission Checklist
 
@@ -17,7 +24,7 @@ Every agent YAML must have:
 - [ ] At least 5 trigger keywords
 - [ ] Has `personality.default`
 - [ ] Skills have descriptions
-- [ ] Tested with SimpleContext v4.1+
+- [ ] Tested with SimpleContext v4.3+
 
 ## Format
 
